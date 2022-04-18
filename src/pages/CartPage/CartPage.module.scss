@@ -1,0 +1,63 @@
+@import '../../styles/media';
+
+.cart {
+  padding-top: 16px;
+  
+  @include media-sm-up {
+    padding-top: 32px;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    @include media-lg-up {
+      flex-direction: row;
+    }
+  }
+
+  &List {
+    flex-grow: 1;
+    @include media-lg-up {
+      margin-right: 30px;
+    }
+
+    &Header {
+      display: none;
+    
+      @include media-sm-up {
+        padding-bottom: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        color: #000000
+      }
+    }
+  }
+
+  &Form {
+    flex-shrink: 0;
+    width: 380px;
+  }
+
+  &Empty {
+    font-size: 16px;
+    text-align: center;
+    color: #888;
+    margin: 0;
+  }
+
+  &Controls {
+    padding: 32px 0 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  &LinkToCatalog {
+    text-decoration: underline;
+    color: #000;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

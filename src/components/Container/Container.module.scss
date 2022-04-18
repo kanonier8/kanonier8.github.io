@@ -1,0 +1,14 @@
+@import '../../styles/_media.scss';
+
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include media-xl-up {
+    width: 1200px;
+    padding: 0;
+  }
+}
+

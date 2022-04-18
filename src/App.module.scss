@@ -1,0 +1,14 @@
+@import './styles/_variables.scss';
+@import './styles/_media.scss';
+
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  padding-top: $header_heigth_mobile;
+
+  @include media-md-up {
+    padding-top: $header_heigth_desktop;
+  }
+}

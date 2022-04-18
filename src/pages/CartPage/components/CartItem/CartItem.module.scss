@@ -1,0 +1,169 @@
+@import '../../../../styles/media';
+
+.cart {
+  display: flex;
+  padding-top: 18px;
+  border-top: 1px solid #CACDD8;
+  margin-bottom: 24px;
+  @include media-sm-up {
+    padding-top: 25px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.modal {
+    border: none;
+    @include media-sm-up {
+      padding-top: 0;
+    }
+  }
+
+  &Cover {
+    display: none;
+    @include media-sm-up {
+      display: block;
+      width: 173px;
+      height: 173px;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      background-color: #333;
+      margin-right: 30px;
+    }
+
+    img {
+      max-width: 100%;
+      vertical-align: top;
+      @supports (object-fit: cover) {
+        vertical-align: unset;
+        max-width: none;
+        width: 173px;
+        height: 173px;
+        object-fit: cover;
+      }
+
+    }
+  }
+
+  &Body {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: space-between;
+  
+    @include media-sm-up {}
+  }
+  
+  &Content {
+    max-width: 276px;
+  }
+
+  &Name {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 500;
+    @include media-sm-up {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+  }
+
+  &Description {
+    font-size: 12px;
+    margin: 0 0 15px;
+    line-height: 14px;
+    color: #888888;
+    font-weight: 400;
+    @include media-sm-up {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &Price {
+    margin: 0 0 15px;
+    color: #050505;
+    font-size: 12px;
+    font-weight: 500;
+    @include media-sm-up {
+      font-size: 16px;
+    }
+  }
+
+  &Controls {
+    display: flex;
+    align-items: baseline;
+  
+    &Button {
+      font-size: 14px;
+      color: #000;
+      font-weight: 400;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      margin-right: 30px;
+      padding: 0;
+      height: 29px;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.active {
+        color: brown
+      }
+    }
+  }
+
+  &Counter {
+    min-width: 71px;
+    height: 51px;
+    background-color: #F7F6F6;
+    border-radius: 6px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+
+    &Label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #000000;
+      padding-right: 5px;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    &Controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &Button {
+      background: none;
+      border: none;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.3;
+      }
+    }
+  }
+}
