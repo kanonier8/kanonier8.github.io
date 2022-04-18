@@ -39,38 +39,40 @@ export enum EAction {
 }
 
 export type Action =
-  | { type: EAction.addCart, payload: IProduct }
+  | { type: EAction.addCart, product: IProduct }
   | { type: EAction.clearCart, payload?: unknown }
-  | { type: EAction.favoriteProduct, payload: number }
-  | { type: EAction.deleteProduct, payload: number }
-  | { type: EAction.increaseProduct, payload: number }
-  | { type: EAction.decreaseProduct, payload: number }
-  | { type: EAction.setSort, payload: ESort }
-  | { type: EAction.setPopupRef, payload: RefObject<HTMLElement> };
+  | { type: EAction.favoriteProduct, id: number }
+  | { type: EAction.deleteProduct, id: number }
+  | { type: EAction.increaseProduct, id: number }
+  | { type: EAction.decreaseProduct, id: number }
+  | { type: EAction.setSort, sort: ESort }
+  | { type: EAction.setPopupRef, ref: RefObject<HTMLElement> };
 
   export const reducer = (state: IContextState, action: Action) => {
-    const { type, payload } = action;
+    const { type } = action;
 
     switch(type) {
 
       case EAction.addCart: {
-        const productInCart = state.cart.find(product => product.id === payload.id);
+        const { product: productPayload } = action;
+        const productInCart = state.cart.find(product => product.id === productPayload.id);
 
         if (productInCart) {
           const updatedCart = state.cart.map(product =>
-            product.id === payload.id ?
+            product.id === productPayload.id ?
               { ...product, count: product.count++ } :
               product
           )
           return { ...state, cart: updatedCart }
         }
 
-        return { ...state, cart: [ ...state.cart, { ...payload, count: 1 }] }
+        return { ...state, cart: [...state.cart, { ...productPayload, count: 1 }] }
       }
 
       case EAction.increaseProduct: {
+        const { id: payloadId } = action;
         const cart = state.cart.map(product => 
-          product.id === payload ? 
+          product.id === payloadId ? 
             { ...product, count: product.count++ } :
             product
         );
@@ -78,8 +80,9 @@ export type Action =
       }
 
       case EAction.decreaseProduct: {
+        const { id: payloadId } = action;
         const cart = state.cart.map(product =>
-          product.id === payload ? 
+          product.id === payloadId ? 
             { ...product, count: product.count === 0 ? 0 : product.count-- } : 
             product
         );
@@ -87,16 +90,19 @@ export type Action =
       }
 
       case EAction.deleteProduct: {
-        const cart = state.cart.filter(product => product.id !== payload);
+        const { id: payloadId } = action;
+        const cart = state.cart.filter(product => product.id !== payloadId);
         return { ...state, cart }
       }
 
       case EAction.setSort: {
-        return { ...state, sort: payload }
+        const { sort: payloadSort } = action;
+        return { ...state, sort: payloadSort }
       }
 
       case EAction.setPopupRef: {
-        return { ...state, popupRefContainer: payload }
+        const { ref: payloadRef } = action;
+        return { ...state, popupRefContainer: payloadRef }
       }
 
       case EAction.clearCart: {
@@ -104,11 +110,12 @@ export type Action =
       }
 
       case EAction.favoriteProduct: {
-        const isFavorite = state.favorites.find(id => id === payload);
+        const { id: payloadId } = action;
+        const isFavorite = state.favorites.find(id => id === payloadId);
         if (isFavorite) {
-          return { ...state, favorites: state.favorites.filter(id => id !== payload) }
+          return { ...state, favorites: state.favorites.filter(id => id !== payloadId) }
         }
-        return { ...state, favorites: [ ...state.favorites, payload ] }
+        return { ...state, favorites: [ ...state.favorites, payloadId ] }
       }
 
       default: {

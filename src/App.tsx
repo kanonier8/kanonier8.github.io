@@ -6,13 +6,13 @@ import { CatalogPage } from './pages/CatalogPage/CatalogPage';
 import { AppContext, initialState } from './context'
 
 import styles from './App.module.scss';
-import { IContextState, reducer, Action } from './context/reducer';
+import { reducer } from './context/reducer';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/'>
       <AppContext.Provider value={{ state, dispatch }}>
         <div className={styles.app}>
           <Header />

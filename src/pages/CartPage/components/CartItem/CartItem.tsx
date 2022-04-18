@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../../../context';
 import { EAction, IProductCart } from '../../../../context/reducer';
@@ -17,18 +17,18 @@ export const CartItem = ({ data, isModalView = false }: Props) => {
   const { id, count, name, image, description, price } = data;
 
   const handleClickDecrease = () => {
-    dispatch({ type: EAction.decreaseProduct, payload: id });
+    dispatch({ type: EAction.decreaseProduct, id });
   };
 
   const handleClickIncrease = () => {
-    dispatch({ type: EAction.increaseProduct, payload: id });
+    dispatch({ type: EAction.increaseProduct, id });
   };
 
   const handleClickDelete = () => {
     if (window.confirm(`Вы дейтсвительно хотите удалить из корзины ${name}?`)) {
       dispatch({
         type: EAction.deleteProduct,
-        payload: id
+        id
       });
     }
   };
@@ -36,7 +36,7 @@ export const CartItem = ({ data, isModalView = false }: Props) => {
   const handleClickFavorite = () => {
     dispatch({
       type: EAction.favoriteProduct,
-      payload: id
+      id
     });
   };
 

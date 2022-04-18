@@ -25,7 +25,7 @@ export const CatalogSort = () => {
   const handleChangeSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     dispatch({
       type: EAction.setSort,
-      payload: event.target.value as ESort
+      sort: event.target.value as ESort
     })
   }
 

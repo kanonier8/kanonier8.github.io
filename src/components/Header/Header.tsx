@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { Container } from '../Container/Container';
-import { Link, NavLink, NavLinkProps } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 import { TileIcon } from '../../icons/TileIcon';
@@ -17,7 +17,7 @@ export const Header = () => {
   useEffect(() => {
     dispatch({
       type: EAction.setPopupRef,
-      payload: elementRef
+      ref: elementRef
     });
   }, []);
 

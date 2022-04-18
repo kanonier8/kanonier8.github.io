@@ -22,7 +22,7 @@ export const CatalogItem = ({ data }: Props) => {
   const handleClickAddCard = () => {
     dispatch({
       type: EAction.addCart,
-      payload: data
+      product: data
     });
 
     setShowModalCart(true);

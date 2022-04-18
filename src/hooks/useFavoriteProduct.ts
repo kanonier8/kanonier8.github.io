@@ -9,7 +9,7 @@ export const useFavoriteProduct = (id: number) => {
   const toggleFavorite = () => {
     dispatch({
       type: EAction.favoriteProduct,
-      payload: id
+      id
     })
   }
 
