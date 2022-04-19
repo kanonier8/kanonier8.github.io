@@ -73,7 +73,7 @@ export type Action =
         const { id: payloadId } = action;
         const cart = state.cart.map(product => 
           product.id === payloadId ? 
-            { ...product, count: product.count++ } :
+            { ...product, count: product.count + 1 } :
             product
         );
         return { ...state, cart }
@@ -83,7 +83,7 @@ export type Action =
         const { id: payloadId } = action;
         const cart = state.cart.map(product =>
           product.id === payloadId ? 
-            { ...product, count: product.count === 0 ? 0 : product.count-- } : 
+            { ...product, count: product.count === 0 ? 0 : product.count - 1 } : 
             product
         );
         return { ...state, cart }
